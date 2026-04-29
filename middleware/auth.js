@@ -1,18 +1,13 @@
 import { verifyToken } from "../utils/jwt";
 
-export function authMiddleware(req) {
-  const authHeader = req.headers.get("authorization");
+export function auth(req) {
+  const token = req.headers.get("authorization");
 
-  if (!authHeader) {
-    return null;
-  }
-
-  const token = authHeader.split(" ")[1];
+  if (!token) return null;
 
   try {
-    const user = verifyToken(token);
-    return user;
-  } catch (error) {
+    return verifyToken(token.split(" ")[1]);
+  } catch {
     return null;
   }
 }

@@ -1,3 +1,7 @@
-export function checkRole(user, role) {
-  return user?.role === role;
+export function isAdmin(user) {
+  return user?.role === "admin";
+}
+
+export function isAgent(user) {
+  return user?.role === "agent";
 }
